@@ -3,6 +3,7 @@ package com.example.travira
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,10 +15,15 @@ import androidx.navigation.compose.rememberNavController
 import com.example.travira.ui.screens.*
 import com.example.travira.ui.viewmodel.LocationViewModel
 import com.example.travira.ui.viewmodel.LocationViewModelFactory
+import com.example.travira.auth.AuthManager
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Initialize authentication manager
+        AuthManager.initialize(this)
+        
         setContent {
             MyApp()
         }
@@ -28,7 +34,7 @@ class MainActivity : ComponentActivity() {
 fun MyApp() {
     val navController = rememberNavController()
     Scaffold { padding ->
-        NavGraph(navController = navController, modifier = Modifier)
+        NavGraph(navController = navController, modifier = Modifier.padding(padding))
     }
 }
 
