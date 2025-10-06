@@ -121,10 +121,10 @@ fun LoginScreen(onNavigate: (String) -> Unit) {
                                             
                                             Toast.makeText(context, "Login successful!", Toast.LENGTH_SHORT).show()
                                             
-                                            // Navigate based on role
+// Navigate based on role
                                             when (authResponse.user.role) {
                                                 "admin", "officer" -> onNavigate("admin_home")
-                                                else -> onNavigate("user_home")
+                                                else -> onNavigate("verify_tourist")
                                             }
                                         } else {
                                             Toast.makeText(context, authResponse?.error ?: "Login failed", Toast.LENGTH_LONG).show()

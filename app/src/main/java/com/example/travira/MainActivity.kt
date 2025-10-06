@@ -54,6 +54,7 @@ fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
         }
         composable("login") { LoginScreen(onNavigate = { navController.navigate(it) }) }
         composable("signup") { SignupScreen(onNavigate = { navController.navigate(it) }) }
+        composable("verify_tourist") { VerifyTouristScreen(onNavigate = { navController.navigate(it) }) }
         composable("user_home") { UserHomeScreen(onNavigate = { navController.navigate(it) }) }
         composable("map_screen") {
             MapScreen()

@@ -24,6 +24,12 @@ interface TraViraApiService {
     suspend fun getTouristStatus(
         @Header("Authorization") token: String
     ): Response<TouristStatusResponse>
+
+    // Verify tourist and obtain unique ID
+    @GET("mobile/tourist/verify")
+    suspend fun verifyTourist(
+        @Header("Authorization") token: String
+    ): Response<VerifyTouristResponse>
     
     @GET("tourists")
     suspend fun getAllTourists(

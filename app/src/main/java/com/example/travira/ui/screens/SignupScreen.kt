@@ -35,9 +35,9 @@ fun SignupScreen(onNavigate: (String) -> Unit) {
         Spacer(Modifier.height(24.dp))
 
         Button(onClick = {
-            // For demo: call register and then navigate to user_home
+// For demo: call register and then navigate to verification first
             authVm.register(if (name.isBlank()) "John Doe" else name)
-            onNavigate("user_home")
+            onNavigate("verify_tourist")
         }, modifier = Modifier.fillMaxWidth(), enabled = !loading) {
             if (loading) CircularProgressIndicator(modifier = Modifier.size(20.dp))
             else Text("Sign Up")

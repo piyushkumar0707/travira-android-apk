@@ -29,6 +29,14 @@ fun UserHomeScreen(onNavigate: (String) -> Unit) {
     
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
+
+    // Guard: force verification if UID is missing
+    LaunchedEffect(Unit) {
+        if (com.example.travira.auth.AuthManager.getTouristUID().isNullOrEmpty()) {
+            onNavigate("verify_tourist")
+            return@LaunchedEffect
+        }
+    }
     
     // Fetch tourist status on screen load
     LaunchedEffect(Unit) {
@@ -53,8 +61,8 @@ fun UserHomeScreen(onNavigate: (String) -> Unit) {
             .padding(16.dp)
     ) {
         // Header
-        Text(
-            text = "Welcome, Tourist!",
+Text(
+            text = "Welcome, Tourist!" + (com.example.travira.auth.AuthManager.getTouristUID()?.let { " (" + it + ")" } ?: ""),
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.primary,
@@ -232,6 +240,17 @@ fun UserHomeScreen(onNavigate: (String) -> Unit) {
                     }
                 }
             }
+        }
+
+        Spacer(Modifier.height(24.dp))
+        OutlinedButton(
+            onClick = {
+                com.example.travira.auth.AuthManager.logout(context)
+                onNavigate("role_selection")
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Logout")
         }
     }
 }

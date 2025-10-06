@@ -33,6 +33,14 @@ data class AuthResponse(
     val error: String? = null
 )
 
+// Tourist verification response
+data class VerifyTouristResponse(
+    val success: Boolean,
+    val touristUID: String,
+    val message: String? = null,
+    val error: String? = null
+)
+
 @Parcelize
 data class User(
     val id: String,
